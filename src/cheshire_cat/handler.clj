@@ -6,7 +6,12 @@
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
-  (GET "/cheshire-cat" [] "smile!")
+  (GET "/cheshire-cat" []
+    { :status 200
+      :headers {"Content-Type" "application/json;charset=utf-8"}
+      :body (json/generate-string
+              {:name "Cheshire Cat"
+              :status :grinning})})
   (route/not-found "Not Found"))
 
 (def app
